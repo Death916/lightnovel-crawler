@@ -140,7 +140,7 @@ def should_pack_by_volume(self):
             'message': 'How many files to generate?',
             'choices': [
                 'Pack everything into a single file',
-                'Split by volume into multiple files'
+                'Split into chapters'
             ],
         },
     ])

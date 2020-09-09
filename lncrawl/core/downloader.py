@@ -98,9 +98,10 @@ def download_chapter_body(app, chapter):
     result = None
 
     dir_name = os.path.join(app.output_path, 'json')
+    chapter_name = str(chapter['id']).rjust(5, '0')
     if app.pack_by_volume:
         vol_name = 'Volume ' + str(chapter['volume']).rjust(2, '0')
-        dir_name = os.path.join(dir_name, vol_name)
+        dir_name = os.path.join(dir_name, chapter_name)
     # end if
 
     chapter_name = str(chapter['id']).rjust(5, '0')

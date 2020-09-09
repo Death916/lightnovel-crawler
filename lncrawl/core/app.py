@@ -146,8 +146,7 @@ class App:
 
         source_name = slugify(urlparse(self.crawler.home_url).netloc)
 
-        self.output_path = os.path.join(
-            'Lightnovels', source_name, self.good_file_name)
+        self.output_path = os.path.join('Lightnovels', self.good_file_name)
     # end def
 
     # ----------------------------------------------------------------------- #
