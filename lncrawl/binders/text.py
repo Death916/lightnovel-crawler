@@ -10,10 +10,12 @@ logger = logging.getLogger(__name__)
 def make_texts(app, data):
     text_files = []
     for vol in data:
-        dir_name = os.path.join(app.output_path, 'text', vol)
-        os.makedirs(dir_name, exist_ok=True)
+        
+        
         for chap in data[vol]:
-            file_name = '%s.txt' % str(chap['id']).rjust(5, '0')
+            dir_name = os.path.join(app.output_path,'chapters', str(chap['id']))
+            os.makedirs(dir_name, exist_ok=True)
+            file_name = '%s.txt' % str(chap['title']).rjust(5, '0')
             file_name = os.path.join(dir_name, file_name)
             with open(file_name, 'w', encoding='utf-8') as file:
                 body = chap['body'].replace('</p><p', '</p>\n<p')

@@ -170,7 +170,7 @@ class App:
         '''Requires: crawler, chapters, output_path, pack_by_volume, book_cover, output_formats'''
         logger.info('Processing data for binding')
         data = {}
-        if self.pack_by_volume:
+        if self.pack_by_volume == 'volume':
             for vol in self.crawler.volumes:
                 # filename_suffix = 'Volume %d' % vol['id']
                 filename_suffix = 'Chapter %d-%d' % (
@@ -181,7 +181,7 @@ class App:
                     and len(x['body']) > 0
                 ]
             # end for
-        else:
+        if self.pack_by_volume == 'chapter':
             first_id = self.chapters[0]['id']
             last_id = self.chapters[-1]['id']
             vol = 'c%s-%s' % (first_id, last_id)
