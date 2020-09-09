@@ -140,9 +140,15 @@ def should_pack_by_volume(self):
             'message': 'How many files to generate?',
             'choices': [
                 'Pack everything into a single file',
-                'Split into chapters'
+                'Split by volume into multiple files',
+                'Insert chapters into folders'
             ],
         },
     ])
-    return answer['split'].startswith('Split')
+    if answer['split'].startswith('Insert'):
+        return 'chapter'
+    if answer['split'].startswith('Split'):
+        return 'volume'
+    if answer['split'].startswith('pack'):
+        return None
 # end def

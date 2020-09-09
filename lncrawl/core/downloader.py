@@ -99,10 +99,12 @@ def download_chapter_body(app, chapter):
 
     dir_name = os.path.join(app.output_path, 'json')
     chapter_name = str(chapter['id']).rjust(5, '0')
-    if app.pack_by_volume:
+    if app.pack_by_volume == 'volume':
         vol_name = 'Volume ' + str(chapter['volume']).rjust(2, '0')
         dir_name = os.path.join(dir_name, chapter_name)
-    # end if
+    if app.pack_by_volume == 'chapter':
+        dir_name = os.path.join(dir_name, chapter_name)
+        
 
     chapter_name = str(chapter['id']).rjust(5, '0')
     file_name = os.path.join(dir_name, chapter_name + '.json')
