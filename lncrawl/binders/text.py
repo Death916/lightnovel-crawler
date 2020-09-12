@@ -12,13 +12,14 @@ def make_texts(app, data):
     for vol in data:
         
         
-        for chap in data[vol]:
-            dir_name = os.path.join(app.output_path,'chapters', str(chap['id']))
+        for chaps in data[vol]:
+            chap = str(chaps['title'].replace('/',''))
+            dir_name = os.path.join(app.output_path, str(chap))
             os.makedirs(dir_name, exist_ok=True)
-            file_name = '%s.txt' % str(chap['title']).rjust(5, '0')
+            file_name = '%s.txt' % chap.rjust(5, '0')
             file_name = os.path.join(dir_name, file_name)
             with open(file_name, 'w', encoding='utf-8') as file:
-                body = chap['body'].replace('</p><p', '</p>\n<p')
+                body = chaps['body'].replace('</p><p', '</p>\n<p')
                 soup = BeautifulSoup(body, 'lxml')
                 text = '\n\n'.join(soup.stripped_strings)
                 text = re.sub(r'[\r\n]+', '\r\n\r\n', text)
